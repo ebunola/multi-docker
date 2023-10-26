@@ -4,24 +4,24 @@ services:
   - docker
 
 before_install:
-  - docker build -t ebun/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t ebunola/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true ebun/react-test npm test
+  - docker run -e CI=true ebunola/react-test npm test
 
 after_success:
-  - docker build -t ebun/multi-client ./client
-  - docker build -t ebun/multi-nginx ./nginx
-  - docker build -t ebun/multi-server ./server
-  - docker build -t ebun/multi-worker ./worker
+  - docker build -t ebunola/multi-client ./client
+  - docker build -t ebunola/multi-nginx ./nginx
+  - docker build -t ebunola/multi-server ./server
+  - docker build -t ebunola/multi-worker ./worker
 
   # Log in to the docker CLI, not plain text
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
   
   #push images to dockerhub
-  - docker push ebun/multi-client
-  - docker push ebun/multi-nginx
-  - docker push ebun/multi-server
-  - docker push ebun/multi-worker
+  - docker push ebunola/multi-client
+  - docker push ebunola/multi-nginx
+  - docker push ebunola/multi-server
+  - docker push ebunola/multi-worker
 
   #updated docker cred
