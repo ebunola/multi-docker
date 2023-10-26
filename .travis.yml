@@ -14,3 +14,12 @@ after_success:
   - docker build -t ebun/multi-nginx ./nginx
   - docker build -t ebun/multi-server ./server
   - docker build -t ebun/multi-worker ./worker
+
+  # Log in to the docker CLI, not plain text
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
+  
+  #push images to dockerhub
+  - docker push ebun/multi-client
+  - docker push ebun/multi-nginx
+  - docker push ebun/multi-server
+  - docker push ebun/multi-worker
