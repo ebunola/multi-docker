@@ -23,3 +23,5 @@ after_success:
   - docker push ebun/multi-nginx
   - docker push ebun/multi-server
   - docker push ebun/multi-worker
+
+  #updated docker cred
