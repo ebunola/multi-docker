@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "ebunola/multi-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "ebunola/multi-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "ebunola/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "ebunola/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "PortMappings": [
+                {
+                    "hostPort": 80,
+                    "conatinerPort": 80
+                }
+            ],
+            "links": ["client", "server" ]
+        }
+    ]
+}
